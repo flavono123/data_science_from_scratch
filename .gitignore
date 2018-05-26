@@ -1,2 +1,5 @@
-#Jupyter notebook
+# Jupyter notebook meta
 .ipynb_checkpoints/
+
+# slient
+*.pdf
