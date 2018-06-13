@@ -1,5 +1,8 @@
 # Jupyter notebook meta
 .ipynb_checkpoints/
 
+# OSX
+.DS_Store
+
 # slient
 *.pdf
