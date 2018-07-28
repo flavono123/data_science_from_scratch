@@ -7,14 +7,18 @@ var command = "theNotebook = " + "'"+attribs['data-notebook-name'].value+"'";
 kernel.execute(command);
 """
 ### JUPYTER NOTEBOOK EAGER LOAD ###
-import io, os, sys, types
+import io, os, sys, types, re
 from IPython import get_ipython
 from nbformat import read
 from IPython.core.interactiveshell import InteractiveShell
 
+def get_chapter_number(file_name):
+    hit = re.match(r'(?P<chapter>\d+)\..*', file_name)
+    return int(hit['chapter'])
+
 files = !ls *.ipynb
 files = sorted(files, key=lambda f: int(f.split('.')[0]))
-files = filter(lambda file: file != theNotebook, files)
+files = filter(lambda file: get_chapter_number(file) < get_chapter_number(theNotebook), files)
 
 nbs = []
 for file in files:
